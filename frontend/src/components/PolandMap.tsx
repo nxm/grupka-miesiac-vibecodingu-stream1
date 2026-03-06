@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ComposableMap,
   Geographies,
@@ -21,6 +22,7 @@ interface PolandMapProps {
 }
 
 export default function PolandMap({ data, metric, onSelect, selected }: PolandMapProps) {
+  const { t } = useTranslation();
   const [tooltip, setTooltip] = useState<{ name: string; value: number | null } | null>(null);
 
   // Get latest year data per voivodeship
@@ -63,12 +65,12 @@ export default function PolandMap({ data, metric, onSelect, selected }: PolandMa
 
   return (
     <div className="bg-white rounded-xl shadow p-5 border border-slate-100 relative">
-      <h2 className="text-lg font-bold text-slate-800 mb-2">Mapa Polski - {metric}</h2>
+      <h2 className="text-lg font-bold text-slate-800 mb-2">{t('map.title', { metric })}</h2>
 
       {tooltip && (
         <div className="absolute top-12 right-5 bg-slate-800 text-white text-sm rounded-lg px-3 py-2 shadow-lg z-10">
           <p className="font-medium capitalize">{tooltip.name}</p>
-          <p>{tooltip.value != null ? tooltip.value.toLocaleString('pl-PL') : 'Brak danych'}</p>
+          <p>{tooltip.value != null ? tooltip.value.toLocaleString('pl-PL') : t('noData')}</p>
         </div>
       )}
 

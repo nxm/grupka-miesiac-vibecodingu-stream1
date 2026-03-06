@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getPrices } from '../api';
 import type { PriceRecord } from '../api';
 import {
@@ -25,6 +26,7 @@ interface CityStats {
 }
 
 export default function CityCompare() {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<string[]>(['Warszawa', 'Kraków', 'Wrocław', 'Gdańsk']);
   const [stats, setStats] = useState<CityStats[]>([]);
   const [loading, setLoading] = useState(true);
@@ -66,7 +68,7 @@ export default function CityCompare() {
 
   return (
     <div className="bg-white rounded-xl shadow p-5 border border-slate-100">
-      <h2 className="text-lg font-bold text-slate-800 mb-3">Porównywarka miast</h2>
+      <h2 className="text-lg font-bold text-slate-800 mb-3">{t('compare.title')}</h2>
 
       <div className="flex flex-wrap gap-1 mb-4">
         {ALL_CITIES.map((city) => (
@@ -83,18 +85,18 @@ export default function CityCompare() {
           </button>
         ))}
       </div>
-      <p className="text-xs text-slate-400 mb-4">Wybierz do 4 miast</p>
+      <p className="text-xs text-slate-400 mb-4">{t('compare.selectUpTo')}</p>
 
       {loading ? (
-        <div className="h-60 flex items-center justify-center text-slate-400">Ładowanie...</div>
+        <div className="h-60 flex items-center justify-center text-slate-400">{t('loadingShort')}</div>
       ) : (
         <>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={stats}>
               <XAxis dataKey="city" tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-              <Tooltip formatter={(value: number) => [`${value.toLocaleString('pl-PL')} zł/m²`]} />
-              <Bar dataKey="latestPrice" name="Cena za m²" radius={[6, 6, 0, 0]}>
+              <Tooltip formatter={(value: number) => [t('prices.unit', { value: value.toLocaleString('pl-PL') })]} />
+              <Bar dataKey="latestPrice" name={t('compare.pricePerSqm')} radius={[6, 6, 0, 0]}>
                 {stats.map((_, i) => (
                   <Cell key={i} fill={COLORS[i % COLORS.length]} />
                 ))}
@@ -105,9 +107,9 @@ export default function CityCompare() {
           <table className="w-full mt-4 text-sm">
             <thead>
               <tr className="text-left text-slate-500 border-b">
-                <th className="pb-2">Miasto</th>
-                <th className="pb-2 text-right">Cena/m²</th>
-                <th className="pb-2 text-right">Zmiana r/r</th>
+                <th className="pb-2">{t('compare.city')}</th>
+                <th className="pb-2 text-right">{t('compare.pricePerSqmShort')}</th>
+                <th className="pb-2 text-right">{t('compare.yoyChange')}</th>
               </tr>
             </thead>
             <tbody>

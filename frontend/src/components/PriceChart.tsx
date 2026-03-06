@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
@@ -25,6 +26,7 @@ interface ChartDataPoint {
 }
 
 export default function PriceChart() {
+  const { t } = useTranslation();
   const [market, setMarket] = useState<'primary' | 'secondary'>('primary');
   const [type, setType] = useState<'transaction' | 'offer'>('transaction');
   const [selectedCities, setSelectedCities] = useState<string[]>(DEFAULT_CITIES);
@@ -63,19 +65,19 @@ export default function PriceChart() {
   return (
     <div className="bg-white rounded-xl shadow p-5 border border-slate-100">
       <div className="flex flex-wrap items-center gap-3 mb-4">
-        <h2 className="text-lg font-bold text-slate-800">Ceny mieszkań za m²</h2>
+        <h2 className="text-lg font-bold text-slate-800">{t('prices.title')}</h2>
         <div className="flex gap-1 ml-auto">
           <button
             onClick={() => setMarket('primary')}
             className={`px-3 py-1 text-sm rounded-lg ${market === 'primary' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'}`}
           >
-            Pierwotny
+            {t('prices.primary')}
           </button>
           <button
             onClick={() => setMarket('secondary')}
             className={`px-3 py-1 text-sm rounded-lg ${market === 'secondary' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'}`}
           >
-            Wtórny
+            {t('prices.secondary')}
           </button>
         </div>
         <div className="flex gap-1">
@@ -83,13 +85,13 @@ export default function PriceChart() {
             onClick={() => setType('transaction')}
             className={`px-3 py-1 text-sm rounded-lg ${type === 'transaction' ? 'bg-green-600 text-white' : 'bg-slate-100 text-slate-600'}`}
           >
-            Transakcje
+            {t('prices.transactions')}
           </button>
           <button
             onClick={() => setType('offer')}
             className={`px-3 py-1 text-sm rounded-lg ${type === 'offer' ? 'bg-green-600 text-white' : 'bg-slate-100 text-slate-600'}`}
           >
-            Oferty
+            {t('prices.offers')}
           </button>
         </div>
       </div>
@@ -111,7 +113,7 @@ export default function PriceChart() {
       </div>
 
       {loading ? (
-        <div className="h-80 flex items-center justify-center text-slate-400">Ładowanie...</div>
+        <div className="h-80 flex items-center justify-center text-slate-400">{t('loadingShort')}</div>
       ) : (
         <ResponsiveContainer width="100%" height={350}>
           <LineChart data={data}>
@@ -119,7 +121,7 @@ export default function PriceChart() {
             <XAxis dataKey="quarter" tick={{ fontSize: 11 }} />
             <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
             <Tooltip
-              formatter={(value: number) => [`${value.toLocaleString('pl-PL')} zł/m²`]}
+              formatter={(value: number) => [t('prices.unit', { value: value.toLocaleString('pl-PL') })]}
             />
             <Legend />
             {selectedCities.map((city, i) => (

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
 import PolandMap from './components/PolandMap';
 import StatsCard from './components/StatsCard';
@@ -13,14 +14,10 @@ import type { HousingRecord, HousingIndicators } from './api';
 
 type MapMetric = 'stock' | 'per1000' | 'construction' | 'avgArea';
 
-const METRIC_LABELS: Record<MapMetric, string> = {
-  stock: 'Liczba mieszkań',
-  per1000: 'Mieszkania na 1000 os.',
-  construction: 'Nowe budownictwo',
-  avgArea: 'Średnia pow. (m²)',
-};
+const METRIC_KEYS: MapMetric[] = ['stock', 'per1000', 'construction', 'avgArea'];
 
 export default function App() {
+  const { t } = useTranslation();
   const [selectedVoivodeship, setSelectedVoivodeship] = useState<string | null>(null);
   const [mapMetric, setMapMetric] = useState<MapMetric>('stock');
 
@@ -73,31 +70,31 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {loading ? (
           <div className="text-center py-20 text-slate-400 text-lg">
-            Ładowanie danych z GUS i NBP...
+            {t('loading')}
           </div>
         ) : (
           <>
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <StatsCard
-                title="Łączna liczba mieszkań"
+                title={t('stats.totalStock')}
                 value={totalStock.toLocaleString('pl-PL')}
-                subtitle="Wszystkie województwa"
+                subtitle={t('stats.allVoivodeships')}
               />
               <StatsCard
-                title="Średnia powierzchnia"
+                title={t('stats.avgArea')}
                 value={`${avgArea.toFixed(1)} m²`}
-                subtitle="Średnia krajowa"
+                subtitle={t('stats.nationalAvg')}
               />
               <StatsCard
-                title="Nowe mieszkania"
+                title={t('stats.newApartments')}
                 value={totalConstruction.toLocaleString('pl-PL')}
-                subtitle="Oddane w ostatnim roku"
+                subtitle={t('stats.completedLastYear')}
               />
               <StatsCard
-                title="Województw"
+                title={t('stats.voivodeships')}
                 value="16"
-                subtitle="Źródło: GUS BDL"
+                subtitle={t('stats.sourceGus')}
               />
             </div>
 
@@ -105,9 +102,9 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-xl shadow p-5 border border-slate-100 mb-4">
-                  <h3 className="text-sm font-medium text-slate-500 mb-3">Metryka mapy</h3>
+                  <h3 className="text-sm font-medium text-slate-500 mb-3">{t('map.metric')}</h3>
                   <div className="space-y-2">
-                    {(Object.keys(METRIC_LABELS) as MapMetric[]).map((key) => (
+                    {METRIC_KEYS.map((key) => (
                       <button
                         key={key}
                         onClick={() => setMapMetric(key)}
@@ -117,20 +114,20 @@ export default function App() {
                             : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
                         }`}
                       >
-                        {METRIC_LABELS[key]}
+                        {t(`metric.${key}`)}
                       </button>
                     ))}
                   </div>
                 </div>
                 {selectedVoivodeship && (
                   <div className="bg-white rounded-xl shadow p-5 border border-slate-100">
-                    <h3 className="text-sm font-medium text-slate-500">Wybrane województwo</h3>
+                    <h3 className="text-sm font-medium text-slate-500">{t('selected.voivodeship')}</h3>
                     <p className="text-lg font-bold text-slate-800 mt-1 capitalize">{selectedVoivodeship}</p>
                     <button
                       onClick={() => setSelectedVoivodeship(null)}
                       className="text-xs text-blue-600 mt-2 hover:underline"
                     >
-                      Wyczyść wybór
+                      {t('selected.clear')}
                     </button>
                   </div>
                 )}
@@ -138,7 +135,7 @@ export default function App() {
               <div className="lg:col-span-2">
                 <PolandMap
                   data={getMapData()}
-                  metric={METRIC_LABELS[mapMetric]}
+                  metric={t(`metric.${mapMetric}`)}
                   onSelect={setSelectedVoivodeship}
                   selected={selectedVoivodeship}
                 />

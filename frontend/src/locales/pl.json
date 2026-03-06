@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "title": "Dashboard Mieszkaniowy Polski",
+    "source": "Dane: GUS BDL + NBP"
+  },
+  "loading": "Ładowanie danych z GUS i NBP...",
+  "loadingShort": "Ładowanie...",
+  "noData": "Brak danych",
+  "map": {
+    "title": "Mapa Polski - {{metric}}",
+    "metric": "Metryka mapy"
+  },
+  "metric": {
+    "stock": "Liczba mieszkań",
+    "per1000": "Mieszkania na 1000 os.",
+    "construction": "Nowe budownictwo",
+    "avgArea": "Średnia pow. (m²)"
+  },
+  "stats": {
+    "totalStock": "Łączna liczba mieszkań",
+    "allVoivodeships": "Wszystkie województwa",
+    "avgArea": "Średnia powierzchnia",
+    "nationalAvg": "Średnia krajowa",
+    "newApartments": "Nowe mieszkania",
+    "completedLastYear": "Oddane w ostatnim roku",
+    "voivodeships": "Województw",
+    "sourceGus": "Źródło: GUS BDL"
+  },
+  "selected": {
+    "voivodeship": "Wybrane województwo",
+    "clear": "Wyczyść wybór"
+  },
+  "prices": {
+    "title": "Ceny mieszkań za m²",
+    "primary": "Pierwotny",
+    "secondary": "Wtórny",
+    "transactions": "Transakcje",
+    "offers": "Oferty",
+    "unit": "{{value}} zł/m²"
+  },
+  "compare": {
+    "title": "Porównywarka miast",
+    "selectUpTo": "Wybierz do 4 miast",
+    "city": "Miasto",
+    "pricePerSqm": "Cena za m²",
+    "pricePerSqmShort": "Cena/m²",
+    "yoyChange": "Zmiana r/r"
+  },
+  "lang": {
+    "pl": "PL",
+    "en": "EN",
+    "de": "DE"
+  }
+}

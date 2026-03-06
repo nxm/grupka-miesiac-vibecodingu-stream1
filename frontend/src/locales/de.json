@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "title": "Polnisches Wohnungs-Dashboard",
+    "source": "Daten: GUS BDL + NBP"
+  },
+  "loading": "Daten von GUS und NBP werden geladen...",
+  "loadingShort": "Laden...",
+  "noData": "Keine Daten",
+  "map": {
+    "title": "Karte von Polen - {{metric}}",
+    "metric": "Kartenmetrik"
+  },
+  "metric": {
+    "stock": "Wohnungsbestand",
+    "per1000": "Wohnungen pro 1.000 Einw.",
+    "construction": "Neubau",
+    "avgArea": "Durchschn. Fläche (m²)"
+  },
+  "stats": {
+    "totalStock": "Gesamter Wohnungsbestand",
+    "allVoivodeships": "Alle Woiwodschaften",
+    "avgArea": "Durchschnittliche Fläche",
+    "nationalAvg": "Landesdurchschnitt",
+    "newApartments": "Neue Wohnungen",
+    "completedLastYear": "Im letzten Jahr fertiggestellt",
+    "voivodeships": "Woiwodschaften",
+    "sourceGus": "Quelle: GUS BDL"
+  },
+  "selected": {
+    "voivodeship": "Ausgewählte Woiwodschaft",
+    "clear": "Auswahl löschen"
+  },
+  "prices": {
+    "title": "Wohnungspreise pro m²",
+    "primary": "Erstmarkt",
+    "secondary": "Zweitmarkt",
+    "transactions": "Transaktionen",
+    "offers": "Angebote",
+    "unit": "{{value}} PLN/m²"
+  },
+  "compare": {
+    "title": "Städtevergleich",
+    "selectUpTo": "Bis zu 4 Städte auswählen",
+    "city": "Stadt",
+    "pricePerSqm": "Preis pro m²",
+    "pricePerSqmShort": "Preis/m²",
+    "yoyChange": "Veränderung ggü. Vj."
+  },
+  "lang": {
+    "pl": "PL",
+    "en": "EN",
+    "de": "DE"
+  }
+}

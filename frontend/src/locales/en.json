@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "title": "Polish Housing Dashboard",
+    "source": "Data: GUS BDL + NBP"
+  },
+  "loading": "Loading data from GUS and NBP...",
+  "loadingShort": "Loading...",
+  "noData": "No data",
+  "map": {
+    "title": "Map of Poland - {{metric}}",
+    "metric": "Map metric"
+  },
+  "metric": {
+    "stock": "Housing stock",
+    "per1000": "Apartments per 1,000 pop.",
+    "construction": "New construction",
+    "avgArea": "Average area (m²)"
+  },
+  "stats": {
+    "totalStock": "Total housing stock",
+    "allVoivodeships": "All voivodeships",
+    "avgArea": "Average area",
+    "nationalAvg": "National average",
+    "newApartments": "New apartments",
+    "completedLastYear": "Completed last year",
+    "voivodeships": "Voivodeships",
+    "sourceGus": "Source: GUS BDL"
+  },
+  "selected": {
+    "voivodeship": "Selected voivodeship",
+    "clear": "Clear selection"
+  },
+  "prices": {
+    "title": "Apartment prices per m²",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "transactions": "Transactions",
+    "offers": "Offers",
+    "unit": "{{value}} PLN/m²"
+  },
+  "compare": {
+    "title": "City comparison",
+    "selectUpTo": "Select up to 4 cities",
+    "city": "City",
+    "pricePerSqm": "Price per m²",
+    "pricePerSqmShort": "Price/m²",
+    "yoyChange": "YoY change"
+  },
+  "lang": {
+    "pl": "PL",
+    "en": "EN",
+    "de": "DE"
+  }
+}
