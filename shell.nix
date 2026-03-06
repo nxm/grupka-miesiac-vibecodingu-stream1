@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 let
   pythonEnv = pkgs.python312.withPackages (ps: with ps; [
@@ -17,7 +17,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo "Dashboard Mieszkaniowy Polski - dev environment"
+    echo "Dashboard Mieszkaniowy Polski - dev environment by grupka.pl"
     echo "Python: $(python3 --version)"
     echo "Node:   $(node --version)"
     echo ""
