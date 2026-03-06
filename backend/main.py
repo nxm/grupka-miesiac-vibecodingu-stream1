@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -6,9 +8,13 @@ import nbp_client
 
 app = FastAPI(title="Dashboard Mieszkaniowy Polski")
 
+allowed_origins = os.environ.get(
+    "ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[o.strip() for o in allowed_origins.split(",")],
     allow_methods=["*"],
     allow_headers=["*"],
 )
